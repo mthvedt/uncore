@@ -27,3 +27,12 @@
 
 (defn hexhash [obj]
   (Integer/toHexString (hash obj)))
+
+(defmacro def-
+  ([symbol] `(def- ~symbol nil))
+  ([symbol init]
+   `(def ~(with-meta symbol (assoc (meta symbol) :private true)) ~init)))
+
+(defmacro defmacro-
+  ([symbol & args]
+   `(defmacro ~(with-meta symbol (assoc (meta symbol) :private true)) ~@args)))
