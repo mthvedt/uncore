@@ -1,4 +1,4 @@
-(defproject eightnotrump/uncore "0.1.0-SNAPSHOT"
+(defproject eightnotrump/uncore "0.1.0"
   :description "Useful clojure stuff I use."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
