@@ -5,6 +5,11 @@
 (defn update-all [map keyvals]
   (reduce (fn [m [k f]] (update m k f)) map keyvals))
 
+(defn realize [coll]
+  (if (realized? coll)
+    coll
+    (doall coll)))
+
 ; Eagerly evaluated map
 (defn domap [& args] (doall (apply map args)))
 
