@@ -30,6 +30,8 @@
    (let [v (first binding)]
      `(let-> [~v (let-> ~binding ~form)] ~@forms))))
 
+(defn list-identity [& args] args)
+
 (defn hexhash [obj]
   (Integer/toHexString (hash obj)))
 
