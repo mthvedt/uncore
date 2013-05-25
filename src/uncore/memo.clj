@@ -2,6 +2,7 @@
   "Memoizing with contexts. More than just performance,
   these fns can be used e.g. to ensure one canonical version
   of something exists in a given context."
+  (import java.util.concurrent.ConcurrentHashMap)
   (use uncore.core))
 
 (def ^{:dynamic true
@@ -29,12 +30,16 @@
   is not set"
   (get @(get @*memo* key1 #'empty-map) key2))
 
+(defn- new-submem []
+  ;(ConcurrentHashMap.))
+  (atom {}))
+
 (defn get-or-create-submem [key]
   (loop []
     (let [oldmem @*memo*]
       (if-let [keymem (get oldmem key)]
         keymem
-        (let [keymem (atom {})]
+        (let [keymem (new-submem)]
           (if (compare-and-set! *memo* oldmem (assoc oldmem key keymem))
             keymem
             (recur)))))))
@@ -45,6 +50,8 @@
   result)
 
 (defn save-or-get! [key1 key2 result]
+  "Saves the mapping for key1, key2 and returns it, or returns the mapping
+  already present."
   (loop []
     (if (cached? key1 key2)
       (lookup key1 key2)
@@ -57,6 +64,10 @@
 (defn save!? [key1 key2 result]
   "Saves the mapping for key1, key2 if the context exists. Returns result."
   (if *memo* (save! key1 key2 result) result))
+
+
+(defn save-count [key1]
+  (if *memo* (count @(get @*memo* key1 #'empty-map)) 0))
 
 ; === High level
 
