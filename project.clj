@@ -1,6 +1,13 @@
-(defproject eightnotrump/uncore "0.2.0"
+(defproject eightnotrump/uncore "0.2.1"
   :description "Useful clojure stuff I use."
   :url "http://example.com/FIXME"
+  :url "https://github.com/mthvedt/uncore"
+  :license {:name "Eclipse Public License - v 1.0"
+            :url "http://www.eclipse.org/legal/epl-v10.html"
+            :distribution :repo
+            :comments "same as Clojure"}
+    :scm {:name "git"
+          :url "https://github.com/mthvedt/uncore"}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :profiles {:dev {:repositories {"stuartsierra-releases"
