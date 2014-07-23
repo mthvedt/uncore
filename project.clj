@@ -1,6 +1,5 @@
 (defproject eightnotrump/uncore "0.2.1"
   :description "Useful clojure stuff I use."
-  :url "http://example.com/FIXME"
   :url "https://github.com/mthvedt/uncore"
   :license {:name "Eclipse Public License - v 1.0"
             :url "http://www.eclipse.org/legal/epl-v10.html"
